@@ -1,0 +1,36 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        google()
+        mavenCentral()
+        //maven { url 'https://repo1.maven.org/maven2/' }
+    }
+    plugins {
+        id 'com.android.application' version '7.1.0-alpha11'
+        id 'com.android.library' version '7.1.0-alpha11'
+        id 'org.jetbrains.kotlin.android' version '1.6.0'
+        id 'org.jetbrains.kotlin.kapt' version '1.5.10'
+        id "org.jetbrains.kotlin.plugin.parcelize" version "1.5.10"
+    }
+    resolutionStrategy {
+        eachPlugin {
+            // Use `resolutionStrategy` to define the Hilt plugin and its coordinate
+            if (requested.id.id == 'dagger.hilt.android.plugin') {
+                useModule("com.google.dagger:hilt-android-gradle-plugin:2.28.1-alpha")
+            }
+        }
+    }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        // 为了 Immersionbar-3.0.0
+        jcenter()
+        //maven { url 'https://repo1.maven.org/maven2/' }
+        maven { url 'https://jitpack.io' }
+    }
+}
+rootProject.name = "VideoCollections"
+include ':app'
